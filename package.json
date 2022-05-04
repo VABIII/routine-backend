@@ -5,6 +5,9 @@
   "main": "index.js",
   "scripts": {
     "start": "nodemon index.js",
+    "rollback": "knex migrate:rollback",
+    "update": "knex migrate:latest",
+    "seed": "knex seed:run",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {
@@ -25,6 +28,7 @@
   "dependencies": {
     "cors": "^2.8.5",
     "express": "^4.18.1",
-    "sqlite3": "^5.0.6"
+    "knex": "0.95.14",
+    "sqlite3": "^5.0.2"
   }
 }
