@@ -1,15 +1,20 @@
 const db = require('../../data/db-config')
 
-const addUser = async newUser => {
-    const [addedUser] = await db('user')
-        .insert(newUser, ['username', 'fullName'])
-    return addedUser
+const getUser = id => {
+    return db('user')
+        .where('user_id', id )
+        .select("user_id", "username", "fullName")
 }
 
+const addUser = async newUser => {
+    const [user_id] = await  db('user')
+        .insert(newUser)
+    return getUser(user_id)
+}
 
 module.exports = {
-    addUser
-
+    addUser,
+    getUser,
 }
 
 

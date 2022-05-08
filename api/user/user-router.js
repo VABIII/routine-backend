@@ -3,8 +3,11 @@ const Users = require('./user-model')
 
 
 
-router.get('', (req, res, next) => {
-    res.json({message: `Hi user!`})
+router.get('/:user_id', (req, res, next) => {
+    const { user_id } = req.params;
+    Users.getUser(user_id)
+        .then(user => res.status(201).json(user))
+        .catch(next)
 
 })
 
@@ -12,7 +15,10 @@ router.post('/register', (req, res, next) => {
     let user = req.body;
 
     Users.addUser(user)
-        .then(newUser => res.status(201).json(newUser))
+        .then(newUser => {
+            console.log(newUser)
+            res.status(201).json(newUser)
+        })
         .catch(next)
 })
 
