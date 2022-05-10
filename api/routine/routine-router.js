@@ -4,7 +4,7 @@ const Routine = require('./routine-model')
 router.get('/:routine_id', (req, res, next) => {
     const {routine_id} = req.params;
 
-    Routine.getRoutine(routine_id)
+    Routine.getRoutine(routine_id);
 
 })
 
