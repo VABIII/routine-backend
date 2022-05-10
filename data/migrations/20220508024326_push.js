@@ -9,7 +9,7 @@ exports.up = function(knex) {
                 .unique()
                 .references('exercise_id')
                 .inTable('exercise')
-                .onDelete('CAADE')
+                .onDelete('CASCADE')
                 .onUpdate('CASCADE')
             tbl.integer('max_weight').notNullable()
 
