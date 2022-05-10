@@ -8,8 +8,7 @@ const added = (req, res, next) => {
     User.addUser(user)
         .then(added => {
             req.body = added
-            res.status(201).json({
-                message: `Welcome to the club ${user.fullName}`, added})
+            res.status(201).json({added})
         })
         .catch(next)
 }
