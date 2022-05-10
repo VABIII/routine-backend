@@ -16,7 +16,6 @@ router.post('/register', (req, res, next) => {
 
     Users.addUser(user)
         .then(newUser => {
-            console.log(newUser)
             res.status(201).json(newUser)
         })
         .catch(next)

@@ -1,9 +1,7 @@
 
 exports.seed = function(knex) {
-  // Deletes ALL existing entries
   return knex('exercise').truncate()
     .then(function () {
-      // Inserts seed entries
       return knex('exercise').insert([
         {name: 'Bench Press'},
         {name: 'Incline Bench'},

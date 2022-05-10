@@ -4,6 +4,7 @@ const getUser = id => {
     return db('user')
         .where('user_id', id )
         .select("user_id", "username", "fullName")
+        .first()
 }
 
 const addUser = async newUser => {
