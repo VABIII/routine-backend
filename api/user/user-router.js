@@ -13,8 +13,7 @@ router.get('/:user_id', (req, res, next) => {
 
 router.post('/register', (req, res, next) => {
     let user = req.body;
-
-    Users.addUser(user)
+    Users.addUser(user.username)
         .then(newUser => {
             res.status(201).json(newUser)
         })

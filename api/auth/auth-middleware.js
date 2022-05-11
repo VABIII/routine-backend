@@ -8,14 +8,30 @@ const added = (req, res, next) => {
     User.addUser(user)
         .then(added => {
             req.body = added
-            res.status(201).json({added})
+            next(res.status(201).json({added}))
         })
         .catch(next)
 }
 
+const checkUsername = async (req, res, next) => {
+    const { username } = req.body;
+
+    User.getByUsername(username)
+        .then(resp => {
+            if(resp) {
+                req.user = resp
+                next()
+            }
+            else next({status: 401, message: 'Invalid Credentials'})
+        })
+        .catch(next)
+
+}
+
 
 module.exports = {
-    added
+    added,
+    checkUsername,
 }
 
 

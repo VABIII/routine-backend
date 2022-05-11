@@ -3,7 +3,7 @@ const bcrypt = require('bcryptjs');
 const User = require('../user/user-model');
 const jwt = require('jsonwebtoken');
 const TOKEN_SECRET = 'secret';
-const { added } = require('./auth-middleware');
+const { added, checkUsername } = require('./auth-middleware');
 
 
 const buildToken = user => {
@@ -19,13 +19,20 @@ const buildToken = user => {
 }
 
 router.post('/register', added, async (req, res, next) => {
-    let user = req.body;
-    const token = buildToken(user)
-    const { id } = req.body;
-
 
 })
 
+
+router.post('/login',  checkUsername,  (req, res, next) => {
+    let { username, password } = req.body;
+    let user = req.user;
+
+    if(user && bcrypt.compareSync(password, user.password)) {
+        const token = buildToken({...user, role: "user"})
+        res.status(200).json({message: `Welcome back ${user.username}`, token})
+    }
+    else next({status: 401, message: 'Invalid Credentials'})
+})
 
 
 

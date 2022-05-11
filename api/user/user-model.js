@@ -7,6 +7,15 @@ const getUser = id => {
         .first()
 }
 
+const getByUsername = username => {
+    return db('user')
+        .where('username', username )
+        .select("user_id", "username", "password")
+        .first()
+}
+
+
+
 const addUser = async newUser => {
     const [user_id] = await  db('user')
         .insert(newUser)
@@ -16,6 +25,7 @@ const addUser = async newUser => {
 module.exports = {
     addUser,
     getUser,
+    getByUsername,
 }
 
 
