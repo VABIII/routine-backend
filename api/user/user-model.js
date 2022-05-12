@@ -8,7 +8,7 @@ const getUser = id => {
 }
 
 const getByUsername = username => {
-    return db('user')
+    return db('user AS u')
         .where('username', username )
         .select("user_id", "username", "password")
         .first()
