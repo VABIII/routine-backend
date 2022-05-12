@@ -16,10 +16,11 @@ const getByUsername = username => {
 
 
 
-const addUser = async newUser => {
-    const [user_id] = await  db('user')
-        .insert(newUser)
-    return getUser(user_id)
+const addUser = newUser => {
+    // const [user_id] = await  db('user')
+    //     .insert(newUser)
+    // return getUser(user_id)
+    return db('user').insert(newUser)
 }
 
 module.exports = {

@@ -15,10 +15,11 @@ router.post('/register', (req, res, next) => {
     let user = req.body;
     Users.addUser(user.username)
         .then(newUser => {
-            res.status(201).json(newUser)
+            res.status(201).json({message: `Welcome!`})
         })
         .catch(next)
 })
+
 
 
 module.exports = router;

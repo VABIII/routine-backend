@@ -23,7 +23,7 @@ router.post('/register', added, async (req, res, next) => {
 })
 
 
-router.post('/login',  checkUsername,  (req, res, next) => {
+router.post('/login',   checkUsername, (req, res, next) => {
     let { username, password } = req.body;
     let user = req.user;
 
