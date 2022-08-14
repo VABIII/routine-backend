@@ -7,7 +7,7 @@ exports.up = function(knex) {
           tbl.string('exerciseName').notNullable()
           tbl.integer('exerciseId')
               .unsigned()
-              .notNullable()
+              // .notNullable()
               .references('exerciseId')
               .inTable('exercise')
               .onDelete('CASCADE')

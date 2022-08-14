@@ -12,7 +12,7 @@ exports.up = function(knex) {
               .onUpdate('CASCADE')
           tbl.integer('typeId')
               .unsigned()
-              .notNullable()
+              // .notNullable()
               .references('typeId')
               .inTable('exerciseType')
               .onDelete('CASCADE')
