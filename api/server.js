@@ -1,19 +1,14 @@
 const express = require('express');
-const userRouter = require('./user/user-router');
-const routineRouter = require('./routine/routine-router');
 const authRouter = require('./auth/auth-router');
-const pushRouter = require('./push/push-router');
 const cors = require('cors');
+const helmet = require('helmet');
 
 const server = express();
-
 server.use(express.json());
+server.use(helmet());
 server.use(cors());
 
-server.use('/api/user', userRouter);
-server.use('/api/routine', routineRouter);
 server.use('/api/auth', authRouter);
-server.use('/api/push', pushRouter);
 
 server.get('/', (req, res, next) => {
     res.json({api: 'up'});
