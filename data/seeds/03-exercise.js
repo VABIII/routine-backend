@@ -5,9 +5,12 @@ exports.seed = function(knex) {
     .then(function () {
       // Inserts seed entries
       return knex('exercise').insert([
-        {userId: 1}
-        // {id: 2, colName: 'rowValue2'},
-        // {id: 3, colName: 'rowValue3'}
+        {userId: 1},
+        {userId: 1},
+        {userId: 1},
+        {userId: 1},
+        {userId: 1},
+        {userId: 1},
       ]);
     });
 };
