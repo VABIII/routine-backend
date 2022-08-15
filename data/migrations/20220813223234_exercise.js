@@ -10,13 +10,6 @@ exports.up = function(knex) {
               .inTable('user')
               .onDelete('CASCADE')
               .onUpdate('CASCADE')
-          tbl.integer('typeId')
-              .unsigned()
-              // .notNullable()
-              .references('typeId')
-              .inTable('exerciseType')
-              .onDelete('CASCADE')
-              .onUpdate('CASCADE')
       })
 };
 

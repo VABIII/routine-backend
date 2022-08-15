@@ -6,8 +6,11 @@ exports.seed = function(knex) {
       // Inserts seed entries
       return knex('exerciseType').insert([
         {type: 'Push', exerciseName: 'Bench Press', exerciseId: 1},
-        // {id: 2, colName: 'rowValue2'},
-        // {id: 3, colName: 'rowValue3'}
+          {type: 'Leg', exerciseName: 'Squats', exerciseId: 2},
+          {type: 'Push', exerciseName: 'Arnold Press', exerciseId: 3},
+          {type: 'Pull', exerciseName: 'Bent Over Row', exerciseId: 4},
+          {type: 'Pull', exerciseName: 'Preacher Curls', exerciseId: 5},
+          {type: 'Leg', exerciseName: 'Deadlift', exerciseId: 6},
       ]);
     });
 };
