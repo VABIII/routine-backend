@@ -16,6 +16,26 @@ const getExerciseByUserIdAndType = (id, type) => {
 
 }
 
+const addExercise = async rt => {
+
+    const [ exerciseId ] = await db('exercise')
+        .insert({userID: rt.userId})
+
+    const type = await db('exerciseType')
+        .insert({
+            type: rt.type,
+            exerciseName: rt.exerciseName,
+            exerciseId: exerciseId,
+        })
+    const weight = await db('weight')
+        .insert({
+            maxWeight: rt.maxWeight,
+            userId: rt.userId,
+            exerciseId: exerciseId,
+        })
+    return [exerciseId, type, weight];
+}
+
 
 
 
@@ -23,6 +43,7 @@ module.exports = {
     getAllExercises,
     getExerciseByUserId,
     getExerciseByUserIdAndType,
+    addExercise,
 };
 
 

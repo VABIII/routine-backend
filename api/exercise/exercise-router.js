@@ -20,11 +20,19 @@ router.get('/:id', (req, res, next) => {
 
 })
 
-router.get('/user/:id', (req, res, next) => {
-    const { id } = req.params;
+/**
+ adds a new exercise to user account
+ Should recieve: {
+    userID: int,
+    type: str,
+    exerciseName: str,
+    exerciseId: int,
+    maxWeight: int
+ }
 
-
-    Exercises.getExerciseByUserId(id, req.body)
+ **/
+router.post('/add', (req, res, next) => {
+    Exercises.addExercise(req.body)
         .then(exs => res.json(exs))
         .catch(next)
 
