@@ -6,7 +6,7 @@ router.get('/', (req, res, next) => {
 
 })
 
-/** Returns a users routine by userId and exerciseType **/
+/** Returns all user routines by userId **/
 router.get('/:id', (req, res, next) => {
     const { id } = req.params;
 

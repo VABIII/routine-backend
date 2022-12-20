@@ -3,11 +3,12 @@ exports.up = function(knex) {
   return knex.schema
       .createTable('exercise', tbl => {
           tbl.increments('exerciseId')
-          tbl.integer('userId')
+          tbl.string('exerciseName')
+          tbl.integer('typeId')
               .unsigned()
               .notNullable()
-              .references('userId')
-              .inTable('user')
+              .references('typeId')
+              .inTable('exerciseType')
               .onDelete('CASCADE')
               .onUpdate('CASCADE')
       })
