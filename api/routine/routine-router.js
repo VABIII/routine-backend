@@ -18,7 +18,7 @@ router.get('/:id', (req, res, next) => {
 /** Returns a user routine by type **/
 
 router.get('/:userId/:typeId', (req, res, next) => {
-    const {userId, typeId} = req.params;
+    const { userId, typeId } = req.params;
 
     Routines.getRoutineByType(userId, typeId)
         .then(routine => res.json(routine))
@@ -27,10 +27,12 @@ router.get('/:userId/:typeId', (req, res, next) => {
 })
 
 /** Adds a new user routine **/
-router.post('/:addRoutine', (req, res, next) => {
+router.post('/{userId}/:addRoutine', (req, res, next) => {
+    const {userId} = req.params;
+    const routine = req.body;
 
-    Routines.getAllRoutinesByUserId
-        .then(routine => res.json(routine))
+    Routines.addRoutine(userId, routine)
+        .then(resp => res.json(resp))
         .catch(next)
 })
 

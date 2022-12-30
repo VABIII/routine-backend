@@ -26,11 +26,26 @@ const getRoutineByType = async (userId, typeId) => {
         .select('e.exerciseName', 'et.type', 'w.maxWeight')
 }
 
+const addRoutine = async (userId, routine) => {
+
+    const weight = {
+        userId,
+        maxWeight: routine.maxWeight,
+        exerciseId: routine.exerciseId,
+    };
+
+
+    return db('weight')
+        .insert(weight);
+
+}
+
 
 
 module.exports = {
     getAllRoutinesByUserId,
     getRoutineByType,
+    addRoutine,
 };
 
 
