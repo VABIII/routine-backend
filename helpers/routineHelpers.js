@@ -19,8 +19,12 @@ const exerciseTypes = {
     HackSquat: 18,
 };
 
-const routineBuilder = () => {
-
+const routineBuilder = (id, routine=[]) => {
+    return {
+        userid: id,
+        maxWeight: routine.maxWeight,
+        exerciseId: exerciseTypes[routine.exerciseId]
+    }
 };
 
 

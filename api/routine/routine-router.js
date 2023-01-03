@@ -27,7 +27,7 @@ router.get('/:userId/:typeId', (req, res, next) => {
 })
 
 /** Adds a new user routine **/
-router.post('/{userId}/:addRoutine', (req, res, next) => {
+router.post('/:userId/addRoutine', (req, res, next) => {
     const {userId} = req.params;
     const routine = req.body;
 

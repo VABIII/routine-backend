@@ -23,22 +23,29 @@ const getRoutineByType = async (userId, typeId) => {
         .join('exerciseType AS et', 'e.typeId', 'et.typeId')
         .where('u.userId', userId)
         .where('et.typeId', typeId)
-        .select('e.exerciseName', 'et.type', 'w.maxWeight')
-}
+        .select('e.exerciseName', 'et.type', 'w.maxWeight');
+};
 
-const addRoutine = async (userId, routine) => {
+const addRoutine = async (userId, routine=[]) => {
+    //
+    // for (let i = 0; i < routine.length; i++) {
+    //     let weight = {
+    //         userId,
+    //         maxWeight: routine.maxWeight,
+    //         exerciseId: routine.exerciseId
+    //     }
+    //
+    //     await db('weight').insert(weight);
+    // }
 
-    const weight = {
+    let weight = {
         userId,
         maxWeight: routine.maxWeight,
-        exerciseId: routine.exerciseId,
-    };
+        exerciseId: routine.exerciseId
+    }
 
-
-    return db('weight')
-        .insert(weight);
-
-}
+    return db('weight').insert(weight);
+};
 
 
 
