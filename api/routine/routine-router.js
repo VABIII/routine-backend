@@ -20,7 +20,7 @@ router.get('/:id', (req, res, next) => {
 router.get('/:userId/:typeId', (req, res, next) => {
     const { userId, typeId } = req.params;
 
-    Routines.getRoutineByType(userId, typeId)
+    Routines.getUserRoutineByType(userId, typeId)
         .then(routine => res.json(routine))
         .catch(next);
 

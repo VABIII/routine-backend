@@ -16,7 +16,7 @@ const getAllRoutinesByUserId = async userId => {
         .select('e.exerciseName', 'et.type', 'w.maxWeight')
 }
 
-const getRoutineByType = async (userId, typeId) => {
+const getUserRoutineByType = async (userId, typeId) => {
     return db('user AS u')
         .join('weight AS w', 'u.userId', 'w.userId')
         .join('exercise AS e', 'w.exerciseId', 'e.exerciseId')
@@ -26,24 +26,12 @@ const getRoutineByType = async (userId, typeId) => {
         .select('e.exerciseName', 'et.type', 'w.maxWeight');
 };
 
-const addRoutine = async (userId, routine=[]) => {
-    //
-    // for (let i = 0; i < routine.length; i++) {
-    //     let weight = {
-    //         userId,
-    //         maxWeight: routine.maxWeight,
-    //         exerciseId: routine.exerciseId
-    //     }
-    //
-    //     await db('weight').insert(weight);
-    // }
-
+const addRoutine = async (userId, routine) => {
     let weight = {
         userId,
         maxWeight: routine.maxWeight,
         exerciseId: routine.exerciseId
-    }
-
+    };
     return db('weight').insert(weight);
 };
 
@@ -51,7 +39,7 @@ const addRoutine = async (userId, routine=[]) => {
 
 module.exports = {
     getAllRoutinesByUserId,
-    getRoutineByType,
+    getUserRoutineByType,
     addRoutine,
 };
 
