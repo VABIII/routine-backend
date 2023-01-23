@@ -1,23 +1,24 @@
+const DB = require("../../data/db-config");
 const db = require("../../data/db-config");
+const USER_DB = 'user';
+const EXERCISE_DB = 'exercise';
+const EXERCISE_TYPE_DB = 'exerciseType';
+const WEIGHT_DB = 'weight';
 
-const userDb = 'user';
-const exerciseDb = 'exercise';
-const exerciseTypeDb = 'exerciseType';
-const weightDb = 'weight';
+const getRoutines = async userId => {
 
-
-const getAllRoutinesByUserId = async userId => {
-
-    return db('user AS u')
+    return db(`${USER_DB} AS u`)
         .join('weight AS w', 'u.userId', 'w.userId')
         .join('exercise AS e', 'w.exerciseId', 'e.exerciseId')
         .join('exerciseType AS et', 'e.typeId', 'et.typeId')
         .where('u.userId', userId)
-        .select('e.exerciseName', 'et.type', 'w.maxWeight')
+        .select('e.exerciseName', 'et.type', 'w.maxWeight');
+
 }
 
 const getUserRoutineByType = async (userId, typeId) => {
-    return db('user AS u')
+
+    return DB(`${USER_DB} AS u`)
         .join('weight AS w', 'u.userId', 'w.userId')
         .join('exercise AS e', 'w.exerciseId', 'e.exerciseId')
         .join('exerciseType AS et', 'e.typeId', 'et.typeId')
@@ -27,18 +28,17 @@ const getUserRoutineByType = async (userId, typeId) => {
 };
 
 const addRoutine = async (userId, routine) => {
+
     let weight = {
         userId,
         maxWeight: routine.maxWeight,
         exerciseId: routine.exerciseId
     };
-    return db('weight').insert(weight);
+    return DB('weight').insert(weight);
 };
 
-
-
 module.exports = {
-    getAllRoutinesByUserId,
+    getRoutines,
     getUserRoutineByType,
     addRoutine,
 };

@@ -10,7 +10,7 @@ router.get('/', (req, res, next) => {
 router.get('/:id', (req, res, next) => {
     const { id } = req.params;
 
-    Routines.getAllRoutinesByUserId(id)
+    Routines.getRoutines(id)
         .then(routine => res.json(routine))
         .catch(next);
 })
