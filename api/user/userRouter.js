@@ -36,6 +36,11 @@ router.post('/addNewUser', (req, res, next) => {
 
 })
 
+router.post('/userLogin', (req, res, next) => {
+    res.json('Logged In');
+
+});
+
 module.exports = router;
 
 

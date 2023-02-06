@@ -16,7 +16,6 @@ router.get('/:id', (req, res, next) => {
 })
 
 /** Returns a user routine by type **/
-
 router.get('/:userId/:typeId', (req, res, next) => {
     const { userId, typeId } = req.params;
 
