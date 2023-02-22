@@ -16,7 +16,7 @@ router.get('/:id', (req, res, next) => {
 })
 
 /** Returns a user routine by type **/
-router.get('/:userId/:typeId', (req, res, next) => {
+router.get('/:userId/:typeId', async (req, res, next) => {
     const { userId, typeId } = req.params;
 
     Routines.getUserRoutineByType(userId, typeId)

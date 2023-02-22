@@ -1,8 +1,12 @@
 const DB = require("../../data/db-config");
+const Enumerable = require('linq');
+
 const USER_DB = 'user';
 const EXERCISE_DB = 'exercise';
 const EXERCISE_TYPE_DB = 'exerciseType';
 const WEIGHT_DB = 'weight';
+
+const userdb = DB('user');
 
 const getRoutines = async userId => {
 
@@ -12,6 +16,9 @@ const getRoutines = async userId => {
         .join('exerciseType AS et', 'e.typeId', 'et.typeId')
         .where('u.userId', userId)
         .select('e.exerciseName', 'et.type', 'w.maxWeight');
+
+
+
 }
 
 const getUserRoutineByType = async (userId, typeId) => {
