@@ -15,11 +15,11 @@ router.get('/:id', (req, res, next) => {
         .catch(next);
 })
 
-/** Returns a user routine by type **/
+/** Returns a user routine by type w/ rep weights **/
 router.get('/:userId/:typeId', async (req, res, next) => {
     const { userId, typeId } = req.params;
 
-    Routines.getUserRoutineByType(userId, typeId)
+    Routines.buildStrengthReps(userId, typeId)
         .then(routine => res.json(routine))
         .catch(next);
 
@@ -42,6 +42,7 @@ router.post('/:userId/addRoutine', (req, res, next) => {
 
 
 module.exports = router;
+
 
 
 

@@ -28,14 +28,39 @@ const routineBuilder = (id, routine=[]) => {
 };
 
 
+const calculateStrengthWeights = weight => {
+    const intervals = [.50, .7, .72, .75, .77, .8, .82, .85, .9];
+    let repArr = [];
+
+    intervals.forEach(x => {
+        const newWeight = x * weight;
+
+        repArr.push(Math.round(newWeight));
+    })
+
+    return repArr;
+}
+
+const calculateSizeWeights = weight => {
+    const intervals = [.50, .7, .72, .74, .76, .78, .8, .82, .84];
+    let repArr = [];
+
+    intervals.forEach(x => {
+        const newWeight = x * weight;
+
+        repArr.push(Math.round(newWeight));
+    })
+
+    return repArr;
+}
 
 
 
 
-
-
-
-
+module.exports = {
+  calculateStrengthWeights,
+  calculateSizeWeights,
+};
 
 
 

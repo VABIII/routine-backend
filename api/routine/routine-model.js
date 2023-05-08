@@ -1,5 +1,8 @@
+const calculate = require("../../helpers/routineHelpers");
+
 const DB = require("../../data/db-config");
 const Enumerable = require('linq');
+const {calculateStrengthWeights} = require("../../helpers/routineHelpers");
 
 const USER_DB = 'user';
 const EXERCISE_DB = 'exercise';
@@ -23,14 +26,19 @@ const getRoutines = async userId => {
 
 const getUserRoutineByType = async (userId, typeId) => {
 
-    return DB(`${USER_DB} AS u`)
+    const x = await DB(`${USER_DB} AS u`)
         .join('weight AS w', 'u.userId', 'w.userId')
         .join('exercise AS e', 'w.exerciseId', 'e.exerciseId')
         .join('exerciseType AS et', 'e.typeId', 'et.typeId')
         .where('u.userId', userId)
         .where('et.typeId', typeId)
         .select('e.exerciseName', 'et.type', 'w.maxWeight');
+
+    return x;
 };
+
+
+
 
 const addRoutine = async (userId, routine) => {
 
@@ -42,10 +50,28 @@ const addRoutine = async (userId, routine) => {
     return DB('weight').insert(weight);
 };
 
+const buildStrengthReps = async (userId, typeId) => {
+    const exercises = await getUserRoutineByType(userId, typeId);
+    let routines = [];
+
+    exercises.forEach(x => {
+        const name = x.exerciseName;
+        const weights = calculateStrengthWeights(Math.round(x.maxWeight));
+        let routine = {[name]: weights};
+
+        routines.push(routine)
+
+    })
+
+    return routines;
+
+}
+
 module.exports = {
     getRoutines,
     getUserRoutineByType,
     addRoutine,
+    buildStrengthReps,
 };
 
 
